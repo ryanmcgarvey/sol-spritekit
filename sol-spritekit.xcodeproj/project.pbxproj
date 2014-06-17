@@ -14,6 +14,11 @@
 		9489C6E8194F596700B9CBBF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9489C6E6194F596700B9CBBF /* Main.storyboard */; };
 		9489C6EA194F596700B9CBBF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9489C6E9194F596700B9CBBF /* Images.xcassets */; };
 		9489C6F6194F596700B9CBBF /* sol_spritekitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9489C6F5194F596700B9CBBF /* sol_spritekitTests.swift */; };
+		9489C700194F5D7A00B9CBBF /* sol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9489C6FF194F5D7A00B9CBBF /* sol.swift */; };
+		9489C702194F61D100B9CBBF /* engine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9489C701194F61D100B9CBBF /* engine.swift */; };
+		9489C704194F633C00B9CBBF /* world.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9489C703194F633C00B9CBBF /* world.swift */; };
+		9489C706194F63E400B9CBBF /* node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9489C705194F63E400B9CBBF /* node.swift */; };
+		9489C739194FE4E500B9CBBF /* UpdateEngineButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9489C738194FE4E500B9CBBF /* UpdateEngineButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +43,11 @@
 		9489C6EF194F596700B9CBBF /* sol-spritekitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "sol-spritekitTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9489C6F4194F596700B9CBBF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9489C6F5194F596700B9CBBF /* sol_spritekitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sol_spritekitTests.swift; sourceTree = "<group>"; };
+		9489C6FF194F5D7A00B9CBBF /* sol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = sol.swift; sourceTree = "<group>"; };
+		9489C701194F61D100B9CBBF /* engine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = engine.swift; sourceTree = "<group>"; };
+		9489C703194F633C00B9CBBF /* world.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = world.swift; sourceTree = "<group>"; };
+		9489C705194F63E400B9CBBF /* node.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = node.swift; sourceTree = "<group>"; };
+		9489C738194FE4E500B9CBBF /* UpdateEngineButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateEngineButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +89,7 @@
 		9489C6DB194F596700B9CBBF /* sol-spritekit */ = {
 			isa = PBXGroup;
 			children = (
+				9489C738194FE4E500B9CBBF /* UpdateEngineButton.swift */,
 				9489C6DE194F596700B9CBBF /* AppDelegate.swift */,
 				9489C6E0194F596700B9CBBF /* GameScene.sks */,
 				9489C6E2194F596700B9CBBF /* GameScene.swift */,
@@ -86,6 +97,10 @@
 				9489C6E6194F596700B9CBBF /* Main.storyboard */,
 				9489C6E9194F596700B9CBBF /* Images.xcassets */,
 				9489C6DC194F596700B9CBBF /* Supporting Files */,
+				9489C6FF194F5D7A00B9CBBF /* sol.swift */,
+				9489C705194F63E400B9CBBF /* node.swift */,
+				9489C703194F633C00B9CBBF /* world.swift */,
+				9489C701194F61D100B9CBBF /* engine.swift */,
 			);
 			path = "sol-spritekit";
 			sourceTree = "<group>";
@@ -215,8 +230,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9489C739194FE4E500B9CBBF /* UpdateEngineButton.swift in Sources */,
+				9489C704194F633C00B9CBBF /* world.swift in Sources */,
+				9489C702194F61D100B9CBBF /* engine.swift in Sources */,
+				9489C706194F63E400B9CBBF /* node.swift in Sources */,
 				9489C6E3194F596700B9CBBF /* GameScene.swift in Sources */,
 				9489C6E5194F596700B9CBBF /* GameViewController.swift in Sources */,
+				9489C700194F5D7A00B9CBBF /* sol.swift in Sources */,
 				9489C6DF194F596700B9CBBF /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -336,6 +356,7 @@
 				INFOPLIST_FILE = "sol-spritekit/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -347,6 +368,7 @@
 				INFOPLIST_FILE = "sol-spritekit/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
