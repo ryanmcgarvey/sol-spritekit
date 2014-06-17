@@ -11,14 +11,21 @@ import SpriteKit
 class GameScene: SKScene {
     var engine = Engine()
     var graph = SKShapeNode()
+    var timer = SKLabelNode(fontNamed:"Chalkduster")
     
 
     override func didMoveToView(view: SKView) {
-        let update_button = UpdateEngineButton(color: UIColor.purpleColor(), size: CGSize(width: 100, height: 200))
-        update_button.position = CGPoint(x:CGRectGetMaxX(self.frame) - 100, y:CGRectGetMinY(self.frame));
+        let update_button = UpdateEngineButton(color: UIColor.purpleColor(), size: CGSize(width: 100, height: 100))
+        update_button.position = CGPoint(x:CGRectGetMaxX(self.frame) - 100, y:CGRectGetMinY(self.frame) + 100);
         update_button.game_scene = self
         update_button.userInteractionEnabled = true;
         self.addChild(update_button)
+        
+        timer.text = "Timer";
+        timer.fontSize = 30;
+        timer.position = CGPoint(x:CGRectGetMaxX(self.frame) - 300, y:CGRectGetMinY(self.frame) + 70 );
+        
+        self.addChild(timer)
     }
     
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
@@ -29,7 +36,10 @@ class GameScene: SKScene {
     }
     
     func update_results() {
+        var start_time = NSDate.timeIntervalSinceReferenceDate()
         engine.run()
+        var end_time = NSDate.timeIntervalSinceReferenceDate()
+        timer.text = "\(end_time - start_time)"
         var correct = 0
         var wrong = 0
         var points = CGPoint[]()

@@ -20,12 +20,15 @@ class Connection {
     var parents: Node[]
     var children: Node[]
     var strength = 1
+    var signal_strength = Dictionary<String, Bool>()
+    var signal_total = 0
     
     var active: Bool {
-    for parent in parents {
-        if !parent.active {
-            return false
-        }
+//        return signal_total == parents.count
+        for(id, signal) in signal_strength {
+            if !signal {
+                return false
+            }
         }
         return true
     }
@@ -34,11 +37,24 @@ class Connection {
         strength += 1
     }
     
+    func signal(parent: Node) {
+        signal_total += 1
+        signal_strength[parent.finger_print] = true
+    }
+    
+    func reset() {
+        signal_total = 0
+        for parent in parents {
+            signal_strength[parent.finger_print] = false
+        }
+    }
+    
     init(parents: Node[], children: Node[] ) {
         self.parents = parents
         self.children = children
         for parent in parents {
             parent.add_connection(self)
+            signal_strength[parent.finger_print] = false
         }
     }
     
@@ -82,6 +98,9 @@ class Gland: Sol {
     func reset() {
         for control in controls {
             control.signal(false)
+        }
+        for connection in connections.values {
+            connection.reset()
         }
     }
     

@@ -23,6 +23,11 @@ class  Node {
     
     func signal(value: Bool) {
         active = value
+        if active {
+            for connection in connections {
+                connection.signal(self)
+            }
+        }
     }
     
     func add_connection(connection: Connection) {
