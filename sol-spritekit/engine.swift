@@ -11,36 +11,46 @@ import Foundation
 
 
 class Engine {
-    var stats = Dictionary<Int, Bool>()
     var sol: Sol
     var world: World
     var eyes = Sensor[]()
-    var controls = Control[]()
     var left_winds = Sensor[]()
     var right_winds = Sensor[]()
+    var round = 0
     
-    init() {
-        for i in 0...3 {
+    init(num_sensors: Int) {
+        
+        for i in 0..num_sensors{
             eyes.append(Sensor(id: i, type: "eye"))
             left_winds.append(Sensor(id: i, type: "left wind"))
             right_winds.append(Sensor(id: i, type: "right wind"))
-            controls.append(Control(id: i, type: "control"))
         }
-        sol = Gland(sensors: eyes + left_winds + right_winds, controls: controls)
-        world = World(eyes: eyes, left_winds: left_winds, right_winds: right_winds, controls: controls)
+        
+        for j in 0..num_sensors {
+            for k in 0..num_sensors {
+                eyes[j].siblings["\(k - j)"] = eyes[k]
+            }
+        }
+
+        sol = Gland(eyes: eyes, winds: left_winds + right_winds)
+        world = World(eyes: eyes, left_winds: left_winds, right_winds: right_winds)
     }
     
-    func run() {
-        for cycle in 1...1000 {
+    func update() -> Dictionary<Int, Bool> {
+        var round_stats = Dictionary<Int, Bool>()
+        round += 1
+        for cycle in 1...50 {
             world.next_scene()
             sol.react()
             if world.correct_response {
                 sol.validate_reaction()
-                stats[cycle] = true
+                round_stats[cycle] = true
             }else {
-                stats[cycle] = false
+                round_stats[cycle] = false
             }
-            sol.reset()
+            sol.sleep()
+
         }
+        return round_stats
     }
 }

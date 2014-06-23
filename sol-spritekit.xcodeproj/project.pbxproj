@@ -18,7 +18,6 @@
 		9489C702194F61D100B9CBBF /* engine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9489C701194F61D100B9CBBF /* engine.swift */; };
 		9489C704194F633C00B9CBBF /* world.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9489C703194F633C00B9CBBF /* world.swift */; };
 		9489C706194F63E400B9CBBF /* node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9489C705194F63E400B9CBBF /* node.swift */; };
-		9489C739194FE4E500B9CBBF /* UpdateEngineButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9489C738194FE4E500B9CBBF /* UpdateEngineButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,7 +46,6 @@
 		9489C701194F61D100B9CBBF /* engine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = engine.swift; sourceTree = "<group>"; };
 		9489C703194F633C00B9CBBF /* world.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = world.swift; sourceTree = "<group>"; };
 		9489C705194F63E400B9CBBF /* node.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = node.swift; sourceTree = "<group>"; };
-		9489C738194FE4E500B9CBBF /* UpdateEngineButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateEngineButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,7 +87,6 @@
 		9489C6DB194F596700B9CBBF /* sol-spritekit */ = {
 			isa = PBXGroup;
 			children = (
-				9489C738194FE4E500B9CBBF /* UpdateEngineButton.swift */,
 				9489C6DE194F596700B9CBBF /* AppDelegate.swift */,
 				9489C6E0194F596700B9CBBF /* GameScene.sks */,
 				9489C6E2194F596700B9CBBF /* GameScene.swift */,
@@ -230,7 +227,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9489C739194FE4E500B9CBBF /* UpdateEngineButton.swift in Sources */,
 				9489C704194F633C00B9CBBF /* world.swift in Sources */,
 				9489C702194F61D100B9CBBF /* engine.swift in Sources */,
 				9489C706194F63E400B9CBBF /* node.swift in Sources */,

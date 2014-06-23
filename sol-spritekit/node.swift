@@ -14,11 +14,17 @@ class  Node {
     var id: Int
     var type: String
     var finger_print: String
+    var predicted = false
+    var siblings = Dictionary<String, Sensor>()
     
     init(id: Int, type: String) {
         self.id = id
         self.type = type
         self.finger_print = "\(type): \(id)"
+    }
+    
+    func predict(value: Bool) {
+        predicted = value
     }
     
     func signal(value: Bool) {
@@ -39,7 +45,4 @@ class  Node {
 
 class Sensor: Node {
     
-}
-
-class Control: Node {
 }

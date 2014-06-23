@@ -24,13 +24,13 @@ class Connection {
     var signal_total = 0
     
     var active: Bool {
-//        return signal_total == parents.count
-        for(id, signal) in signal_strength {
-            if !signal {
-                return false
-            }
-        }
-        return true
+        return signal_total == parents.count
+//        for(id, signal) in signal_strength {
+//            if !signal {
+//                return false
+//            }
+//        }
+//        return true
     }
     
     func strengthen() {
@@ -60,22 +60,47 @@ class Connection {
     
 }
 
-class AssumedConnection {
-    
+class AbstractConnection {
+    var sibling_ids = Dictionary<String, Int>()
+    func prediction_for(
+
+    init(sensor: Sensor) {
+        for connection in sensor.connections {
+            for child in connection.children {
+                for(id, sibling) in sensor.siblings {
+                    
+                    if sibling.id == child.id {
+                        if sibling_ids[id] {
+                            sibling_ids[id] = sibling_ids[id]! + 1
+                        }else {
+                            sibling_ids[id] = 1
+                        }
+                        
+                    }
+                    
+                }
+            }
+        }
+    }
 }
 
 class Gland: Sol {
-    var sensors: Sensor[]
-    var controls: Control[]
+    var eyes: Sensor[]
+    var winds: Sensor[]
     var connections =  Dictionary<String,Connection>()
+    var abstract_connections = Dictionary<String,AbstractConnection>()
     
-    init(sensors: Sensor[], controls: Control[]) {
-        self.sensors = sensors
-        self.controls = controls
+    var sensors: Sensor[] {
+        return eyes + winds
+    }
+    
+    init(eyes: Sensor[], winds: Sensor[]) {
+        self.eyes = eyes
+        self.winds = winds
     }
     
     func react() {
-        valid_controls.sample().signal(true)
+        valid_sensors.sample().predict(true)
     }
     
     func validate_reaction() {
@@ -86,18 +111,16 @@ class Gland: Sol {
         
         var sensor_fingerprint = "\(ids)"
         if var connection = connections[sensor_fingerprint] {
-            // println("connection already made with: \(sensor_fingerprint)")
             connection.strengthen()
         }else{
-            // println("Adding connection with fingerprint: \(sensor_fingerprint)")
-            connections[sensor_fingerprint] = Connection(parents: active_sensors, children: active_controls)
+            connections[sensor_fingerprint] = Connection(parents: active_sensors, children: active_predictions)
         }
     }
     
-    
     func reset() {
-        for control in controls {
-            control.signal(false)
+        for sensor in sensors {
+            sensor.predict(false)
+            sensor.signal(false)
         }
         for connection in connections.values {
             connection.reset()
@@ -105,11 +128,15 @@ class Gland: Sol {
     }
     
     func sleep() {
-
+        var active_sensor = secondary_sensor_with_most_connections()
+        
     }
     
+    func secondary_sensor_with_most_connections() -> Sensor {
+        return winds[0]
+    }
     
-    var valid_controls: Node[] {
+    var valid_sensors: Node[] {
         var nodes = Node[]()
 
         for sensor in active_sensors {
@@ -121,7 +148,7 @@ class Gland: Sol {
         }
         
         if nodes.isEmpty {
-            return controls
+            return eyes
         }else {
             return nodes
         }
@@ -138,14 +165,14 @@ class Gland: Sol {
         return output
     }
     
-    var active_controls : Control[] {
-    var output = Control[]()
-        for node in controls {
-            if node.active {
-                output += node
+    var active_predictions: Sensor[] {
+        var output = Sensor[]()
+            for node in eyes {
+                if node.active {
+                    output += node
+                }
             }
-        }
-        return output
+            return output
     }
 }
 
